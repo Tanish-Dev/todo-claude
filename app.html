@@ -76,14 +76,14 @@
 
     /* ── Ambient background orbs (the canvas glass blurs against) ── */
     .ambient { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55; transition: background 0.5s; }
-    .orb-1 { width: 360px; height: 360px; background: var(--accent); top: -120px; left: -80px; opacity: 0.4; }
-    .orb-2 { width: 320px; height: 320px; background: #9333ea; bottom: 8%; right: -100px; opacity: 0.3; }
-    .orb-3 { width: 280px; height: 280px; background: #0ea5e9; top: 38%; left: 40%; opacity: 0.22; }
-    [data-theme="light"] .orb { opacity: 0.4; }
-    [data-theme="light"] .orb-1 { opacity: 0.35; }
-    [data-theme="light"] .orb-2 { opacity: 0.3; }
-    [data-theme="light"] .orb-3 { opacity: 0.25; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0; transition: background 0.5s; display: none; }
+    .orb-1 { width: 360px; height: 360px; background: var(--accent); top: -120px; left: -80px; opacity: 0; }
+    .orb-2 { width: 320px; height: 320px; background: #9333ea; bottom: 8%; right: -100px; opacity: 0; }
+    .orb-3 { width: 280px; height: 280px; background: #0ea5e9; top: 38%; left: 40%; opacity: 0; }
+    [data-theme="light"] .orb { opacity: 0; }
+    [data-theme="light"] .orb-1 { opacity: 0; }
+    [data-theme="light"] .orb-2 { opacity: 0; }
+    [data-theme="light"] .orb-3 { opacity: 0; }
 
     .app {
       width: 100%; max-width: 440px; min-height: 100dvh;
@@ -219,7 +219,6 @@
     .tcard:active { transform: scale(0.99); }
     .tcard.pinned { border-color: var(--accent-soft); }
     .tcard.done { opacity: 0.55; }
-    .tcard-accent { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px; }
 
     .tcard-top { display: flex; align-items: flex-start; gap: 12px; }
     .check {
@@ -435,6 +434,11 @@
     input[type="date"], input[type="time"] { color-scheme: dark; }
     [data-theme="light"] input[type="date"], [data-theme="light"] input[type="time"] { color-scheme: light; }
 
+    @media (max-width: 340px) {
+      .dt-row { flex-direction: column; gap: 0; }
+      .dt-row .field { margin-bottom: 16px; }
+    }
+
     .cat-picker { display: flex; gap: 8px; flex-wrap: wrap; }
     .cat-opt {
       padding: 9px 13px; border-radius: 12px; border: 1.5px solid var(--glass-br); background: var(--glass);
@@ -539,7 +543,7 @@
       <div class="header">
         <div>
           <div class="greeting" id="greeting">Good Morning</div>
-          <div class="greeting-name" id="home-name">There</div>
+          <div class="greeting-name" id="home-name">User</div>
         </div>
         <div class="header-actions">
           <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" type="button">
@@ -651,7 +655,7 @@
       <div class="scroll-area">
         <div class="profile-hero glass">
           <div class="avatar" id="avatar">T</div>
-          <div class="profile-name"><span id="profile-name">There</span>
+          <div class="profile-name"><span id="profile-name">User</span>
             <span class="edit-pencil" id="edit-name" aria-label="Edit name"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z"/></svg></span>
           </div>
           <div class="profile-sub" id="profile-sub">Let's get things done</div>
@@ -869,7 +873,7 @@ const DEFAULTS = {
     { id: 'c3', name: 'Health',   color: '#34d399' },
     { id: 'c4', name: 'Shopping', color: '#fbbf24' },
   ],
-  profile: { name: 'There' },
+  profile: { name: 'User' },
   settings: { theme: null, accent: '#2563eb', confetti: true },
 };
 const ACCENTS = ['#2563eb','#9333ea','#ec4899','#f43f5e','#f59e0b','#34d399','#06b6d4','#8b5cf6'];
@@ -986,7 +990,6 @@ function taskCard(t, q = '') {
   (t.tags||[]).slice(0,2).forEach(tag => meta += `<span class="badge tag">#${esc(tag)}</span>`);
 
   return `<div class="tcard ${t.done?'done':''} ${t.pinned?'pinned':''}" data-id="${t.id}">
-    ${c ? `<div class="tcard-accent" style="background:${c.color}"></div>` : ''}
     <div class="pin-ico"><svg viewBox="0 0 24 24"><path d="M12 17v5M5 9l7-7 7 7-3 3v3H8v-3z"/></svg></div>
     <div class="tcard-top">
       <div class="check ${t.done?'checked':''}" data-check="${t.id}"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
