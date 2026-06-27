@@ -10,15 +10,17 @@ A gorgeous, glassmorphic todo app and matching landing page — built as a singl
 
 `Glassmorphism UI` · `Dark / Light` · `8 Accent Themes` · `Offline‑first` · `Zero dependencies`
 
+`Tasks` · `Habits` · `Focus Timer` · `Notes` · `Spending` · `Countdowns` · `Quick Tools`
+
 </div>
 
 ---
 
 ## ✨ Overview
 
-**Things** is a fully‑featured personal task manager that runs entirely in the browser. Everything — your tasks, categories, profile, and preferences — lives in `localStorage`, so it works offline and your data never leaves your device. The whole app is one self‑contained `index.html`: HTML, CSS, and vanilla JavaScript with no external requests.
+**Things** is a fully‑featured personal productivity hub that runs entirely in the browser. It started as a task manager and now lives up to its name — a small suite of genuinely useful everyday **things**: tasks, habits, a focus timer, quick notes, spending, countdowns and a set of pocket utilities. Everything lives in `localStorage`, so it works offline and your data never leaves your device. The whole app is one self‑contained file: HTML, CSS, and vanilla JavaScript with no external requests.
 
-It ships with four working sections — **Home**, **Tasks**, **Calendar**, and **Profile** — tied together by a frosted‑glass floating island navbar.
+It ships with four working sections — **Home**, **Tasks**, **Calendar**, and **Profile** — tied together by a frosted‑glass floating island navbar, and the **Home** screen doubles as a dashboard of live tool widgets.
 
 ---
 
@@ -67,6 +69,18 @@ It ships with four working sections — **Home**, **Tasks**, **Calendar**, and *
 - **Category manager** — create and delete colour‑coded categories
 - **Export / Import** your whole dataset as JSON for backup or transfer
 - **Clear all data** with a confirmation guard
+
+### 🧰 Everyday tools (Home dashboard widgets)
+Beyond tasks, the Home screen is a command center of live widgets — each expanding into a full bottom‑sheet tool:
+
+- **⏱️ Focus timer** — a Pomodoro timer with a live ring; configurable focus/break lengths (15–60m / 5–15m), auto‑switching between work and break, confetti on completion, and per‑day session + minute stats
+- **✅ Habit tracker** — build daily routines with one‑tap completion, 🔥 streak counts, custom emoji icons and colours; reuses the app's streak/ring language
+- **📝 Quick notes** — capture a thought instantly from Home, then manage everything (search, pin, edit, delete) in a full Notes sheet
+- **💸 Spending tracker** — log expenses by category (Food, Transport, Bills…), with live **today** and **this‑month** totals and a recent‑expenses list
+- **⏳ Countdowns** — "X days until…" for birthdays, trips and deadlines; the soonest event surfaces right on Home
+- **🔧 Quick tools** — a pocket utility grid: **Tip splitter** (bill ÷ people with tip %), **Unit converter** (length / weight / volume / temperature), **Password generator** (length + character‑set toggles, crypto‑strong, one‑tap copy), and a **Calculator**
+
+All tool data is included in **Export / Import** and **Clear all data**, so your whole life‑OS travels in one JSON file.
 
 ### 🎨 Design
 - **Glassmorphism everywhere** — frosted blur, layered translucency, inner highlights, and soft shadows on every surface
